@@ -12,4 +12,4 @@ layout: default
 sudo wireshark-gtk &
 ```
 * We then click on enp0s3 interface
-[enp0s3](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/enp0s3.png)
+![enp0s3](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/enp0s3.png)

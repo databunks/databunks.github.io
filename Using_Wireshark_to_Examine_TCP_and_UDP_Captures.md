@@ -36,17 +36,17 @@ Setting the filter to `tcp and ip.addr == 194.108.117.16`
 
 ### Analyzing TCP Fields
 Once the TCP filter is in place, the first three packets (shown in the top section) represent the sequence of [SYN], [SYN, ACK], and [ACK], which make up the TCP three-way handshake.
-![TCP_Fields_SYNACK](./images/labs/TCP_Fields_SYNACK.png)
+![TCP_Fields_SYNACK](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_Fields_SYNACK.png)
 
 TCP is commonly used throughout a session to manage datagram delivery, confirm datagram receipt, and adjust window size. Every time data is exchanged between the FTP client and server, a new TCP session is initiated. Once the data transfer is complete, the TCP session is closed. When the FTP session ends, TCP ensures a clean shutdown and termination.
 
 In Wireshark, you can find comprehensive TCP details in the packet details pane (middle section). Select the first TCP datagram from the host computer and expand the various sections of the TCP datagram, as illustrated below.
 
-![TCP_Header_SYNACK](./images/labs/TCP_Header_SYNACK.png)
+![TCP_Header_SYNACK](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_Header_SYNACK.png)
 
 
-WIP
-![TCP_Datagram](./images/labs/tcp-segment-format-l-768773276.jpg)
+
+![TCP_Datagram](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/tcp-segment-format-l-768773276.jpg)
 The diagram above illustrates a TCP datagram. Here’s a breakdown of each field:
 
     The TCP source port number is assigned to the host that initiates the TCP connection. Typically, this value is a random number above 1,023.

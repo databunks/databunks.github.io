@@ -64,5 +64,17 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
     The Urgent pointer is used only when the Urgent (URG) flag is set, signaling that urgent data is being sent.
     The Options field currently includes just one option, which defines the maximum segment size for TCP (an optional value).
 
+| Description  | Wireshark Results |
+|:-------------|:------------------|
+| Source IP address           | good swedish fish | 
+| Destination IP address | good and plenty   | 
+| Source port number           | good `oreos`      | 
+| Destination port number           | good `zoute` drop |
+| Sequence number           | good `zoute` drop |
+| Acknowledgment number           | good `zoute` drop |
+| Header length           | good `zoute` drop |
+| Window size           | good `zoute` drop |
+  
+
 ## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
 

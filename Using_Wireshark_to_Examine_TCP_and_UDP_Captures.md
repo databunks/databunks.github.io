@@ -68,11 +68,11 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
 |:-------------|:------------------|
 | Source IP address           | 192.168.0.183 | 
 | Destination IP address | 194.108.117.16 | 
-| Source port number           | 57106  | 
+| Source port number           | 37848  | 
 | Destination port number           | 21 |
 | Sequence number           | 0 |
 | Acknowledgment number           | 0 |
-| Header length           | 30 bytes |
+| Header length           | 40 bytes |
 | Window size           | 29200 |
   
 

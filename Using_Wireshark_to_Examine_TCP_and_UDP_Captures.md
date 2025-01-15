@@ -32,17 +32,17 @@ ftp test.rebex.net
 ### Viewing In Wireshark
 Setting the filter to `tcp and ip.addr == 194.108.117.16`
 
-![enp0s3](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/wireshark_tcp__filter_cap.png)
+![enp0s3](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/All_Packets.png)
 
 ### Analyzing TCP Fields
 Once the TCP filter is in place, the first three packets (shown in the top section) represent the sequence of [SYN], [SYN, ACK], and [ACK], which make up the TCP three-way handshake.
-![TCP_Fields_SYNACK](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_Fields_SYNACK.png)
+![TCP_Fields_SYNACK](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/3_way_handshake)
 
 TCP is commonly used throughout a session to manage datagram delivery, confirm datagram receipt, and adjust window size. Every time data is exchanged between the FTP client and server, a new TCP session is initiated. Once the data transfer is complete, the TCP session is closed. When the FTP session ends, TCP ensures a clean shutdown and termination.
 
 In Wireshark, you can find comprehensive TCP details in the packet details pane (middle section). Select the first TCP datagram from the host computer and expand the various sections of the TCP datagram, as illustrated below.
 
-![TCP_Header_SYNACK](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_Header_SYNACK.png)
+![TCP_Header_SYNACK](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_SYN_ACK.png)
 
 
 
@@ -66,14 +66,14 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
 
 | Description  | Wireshark Results |
 |:-------------|:------------------|
-| Source IP address           | good swedish fish | 
-| Destination IP address | good and plenty   | 
-| Source port number           | good `oreos`      | 
-| Destination port number           | good `zoute` drop |
-| Sequence number           | good `zoute` drop |
-| Acknowledgment number           | good `zoute` drop |
-| Header length           | good `zoute` drop |
-| Window size           | good `zoute` drop |
+| Source IP address           | 192.168.0.183 | 
+| Destination IP address | 194.108.117.16 | 
+| Source port number           | 57106  | 
+| Destination port number           | 21 |
+| Sequence number           | 0 |
+| Acknowledgment number           | 0 |
+| Header length           | 30 bytes |
+| Window size           | 29200 |
   
 
 ## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture

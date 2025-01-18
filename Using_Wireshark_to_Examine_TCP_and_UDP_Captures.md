@@ -93,6 +93,7 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
 
 ### ACK
 ![TCP_Datagram](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_ACK.png)
+
 | Description  | Wireshark Results |
 |:-------------|:------------------|
 | Source IP address           | 192.168.0.183 | 

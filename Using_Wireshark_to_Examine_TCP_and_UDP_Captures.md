@@ -64,6 +64,7 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
     The Urgent pointer is used only when the Urgent (URG) flag is set, signaling that urgent data is being sent.
     The Options field currently includes just one option, which defines the maximum segment size for TCP (an optional value).
 
+### SYN
 | Description  | Wireshark Results |
 |:-------------|:------------------|
 | Source IP address           | 192.168.0.183 | 
@@ -75,6 +76,33 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
 | Header length           | 40 bytes |
 | Window size           | 29200 |
   
+
+### SYN ACK
+![TCP_Datagram](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_SYN.png)
+
+| Description  | Wireshark Results |
+|:-------------|:------------------|
+| Source IP address           | 194.108.117.16 | 
+| Destination IP address | 192.168.0.183 | 
+| Source port number           | 21  | 
+| Destination port number           | 37848 |
+| Sequence number           | 0 |
+| Acknowledgment number           | 0 |
+| Header length           | 40 bytes |
+| Window size           | 65535 |
+
+### ACK
+![TCP_Datagram](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/TCP_ACK.png)
+| Description  | Wireshark Results |
+|:-------------|:------------------|
+| Source IP address           | 192.168.0.183 | 
+| Destination IP address | 194.108.117.16 | 
+| Source port number           | 37848 | 
+| Destination port number           | 21 |
+| Sequence number           | 0 |
+| Acknowledgment number           | 0 |
+| Header length           | 32 bytes |
+| Window size           | 229 |
 
 ## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
 

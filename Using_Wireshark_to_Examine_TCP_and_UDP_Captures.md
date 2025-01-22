@@ -106,4 +106,4 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
 | Window size           | 229 |
 
 ## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
-
+Once a TCP session is established, FTP traffic can flow between the PC and the FTP server. The FTP client and server exchange data without being aware that TCP is managing and controlling the session. When the FTP server sends a Response: 220 to the client, the FTP client's TCP session sends an acknowledgment to the server's TCP session. This process can be observed in the Wireshark capture below.

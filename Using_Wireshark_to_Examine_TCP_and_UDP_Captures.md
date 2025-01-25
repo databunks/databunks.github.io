@@ -105,5 +105,24 @@ Note: In the Wireshark capture shown above, the destination port is 21, which is
 | Header length           | 32 bytes |
 | Window size           | 229 |
 
-## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
+
 Once a TCP session is established, FTP traffic can flow between the PC and the FTP server. The FTP client and server exchange data without being aware that TCP is managing and controlling the session. When the FTP server sends a Response: 220 to the client, the FTP client's TCP session sends an acknowledgment to the server's TCP session. This process can be observed in the Wireshark capture below.
+
+![TCP_Datagram](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/ftp_wireshark_1.png)
+Here's a rewritten explanation of the FTP session termination process:
+
+When an FTP client completes its file transfer operations, it initiates the connection closure by sending a "quit" command. The FTP server responds with a 221 status code, signaling a farewell message.
+
+The TCP connection termination follows a precise four-way handshake:
+
+    The FTP server initiates the TCP session closure by sending a termination datagram to the client.
+    The FTP client receives this termination signal and acknowledges it.
+    The client then sends its own termination request back to the server.
+    When the server receives this duplicate termination request, it sends a final acknowledgment (ACK) datagram.
+
+This systematic process ensures a clean, orderly shutdown of the FTP connection, with both the client and server explicitly confirming the termination. Each step involves careful exchange of signals to guarantee that both parties agree the session is complete and no data remains unsynchronized.
+
+The sequence represents a carefully choreographed digital handshake, where each side of the connection formally and politely says goodbye, ensuring no loose ends remain in the communication protocol.
+
+## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
+

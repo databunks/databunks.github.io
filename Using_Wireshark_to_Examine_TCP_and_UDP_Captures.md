@@ -124,5 +124,11 @@ This systematic process ensures a clean, orderly shutdown of the FTP connection,
 
 The sequence represents a carefully choreographed digital handshake, where each side of the connection formally and politely says goodbye, ensuring no loose ends remain in the communication protocol.
 
+![FTP_client_server_flow](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/ftp_client_server_flow.png)
+
+By using an FTP filter, the full sequence of FTP traffic can be analyzed in Wireshark. Pay attention to the series of events throughout this FTP session. The username "anonbymous" was used to download the Readme file. Once the transfer was finished, the user closed the FTP session.
+
+![FTP_client_server_flow](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/FTP_filter_wireshark.png)
+
 ## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
 

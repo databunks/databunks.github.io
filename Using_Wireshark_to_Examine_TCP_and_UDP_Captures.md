@@ -132,3 +132,44 @@ By using an FTP filter, the full sequence of FTP traffic can be analyzed in Wire
 
 ## Identify UDP Header Fields and Operation Using a Wireshark TFTP Session Capture
 
+### Step 1: Starting Mininet and TFTP Service
+
+First, I launch Mininet and enter the password "cyberops" when prompted to get started.
+
+[analyst@secOps ~]$ sudo lab.support.files/scripts/cyberops_topo.py
+[sudo] password for analyst:
+
+Next, I start H1 and H2 at the Mininet prompt to prepare for the TFTP transfer.
+`
+*** Starting CLI:
+mininet> xterm H1 H2
+`
+In the terminal for H1, then run the script to start the TFTP server.
+
+[root@secOps analyst]# /home/analyst/lab.support.files/scripts/start_tftpd.sh
+[root@secOps analyst]#
+
+### Step 2: Creating a File for TFTP Transfer
+
+Now, you need to create the file that will be transferred using TFTP. At the H1 terminal, create a text file in the /srv/tftp/ directory.
+`
+[root@secOps analyst]# echo "This file contains my tftp data." > /srv/tftp/my_tftp_data
+`
+Confirm that the file was created successfully and contains the expected text.
+`
+[root@secOps analyst]# cat /srv/tftp/my_tftp_data
+This file contains my tftp data.
+`
+Because of the TFTP server’s security settings, the file on the receiving end must already exist. So, switch to H2 and create a file named my_tftp_data in the same directory.
+`
+[root@secOps analyst]# touch my_tftp_data
+`
+### Step 3: Capturing the TFTP Session in Wireshark
+
+To capture the TFTP session, launch Wireshark on H1.
+`
+[root@secOps analyst]# wireshark &
+`
+In Wireshark, navigate to the Edit menu, select Preferences, then expand the Protocols section. Scroll down to find UDP, check the box to validate the UDP checksum if possible, and click OK to apply the changes.
+
+Now, Your ready to capture the TFTP session and analyze the UDP headers in the Wireshark interface.

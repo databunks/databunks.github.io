@@ -173,3 +173,72 @@ To capture the TFTP session, launch Wireshark on H1.
 In Wireshark, navigate to the Edit menu, select Preferences, then expand the Protocols section. Scroll down to find UDP, check the box to validate the UDP checksum if possible, and click OK to apply the changes.
 
 Now, Your ready to capture the TFTP session and analyze the UDP headers in the Wireshark interface.
+
+![FTP_client_server_flow](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/Wireshark_TFTP.png)
+
+Start a Wireshark capture on the interface H1-eth0.
+
+Start a tftp session from H2 to the tftp server on H1 and get the file my_tftp_data.
+
+`[root@secOps analyst]# tftp 10.0.0.11 -c get my_tftp_data`
+
+Stop the Wireshark capture. Set the filter to tftp and click Apply. Use the three TFTP packets to fill in the table and answer the questions in the rest of this lab.
+
+![FTP_client_server_flow](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/wireshark_tftp_3.png)
+
+
+In Wireshark, you can view detailed information about UDP packets in the Packet Details pane. To do this, select the first UDP datagram from the host computer and move your mouse pointer to the Packet Details pane. You might need to adjust the size of the pane and expand the UDP section by clicking on the protocol expand button. Once expanded, the UDP datagram details should resemble the diagram shown below.
+
+![FTP_client_server_flow](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/udp_data.png)
+
+![FTP_client_server_flow](./images/labs/Using_Wireshark_to_Examine_TCP_and_UDP_Captures/udp_segment.png)
+
+Using the Wireshark capture of the initial UDP datagram, complete the details for the UDP header. The checksum value is represented in hexadecimal (base 16) format, indicated by the prefix 0x.
+
+Description 	Wireshark Results
+Source IP address 	10.0.0.12
+Destination IP address 	10.0.0.11
+Source port number 	47844
+Destination port number 	69
+UDP message length 	32 bytes*
+UDP checksum 	0x2029 [correct]*
+
+
+| Description  | Wireshark Results |
+|:-------------|:------------------|
+| Source IP address           | 10.0.0.12 | 
+| Destination IP address | 10.0.0.11 | 
+| Source port number           | 47844 | 
+| UDP message length          | 32 bytes |
+| UDP checksum           | 0x2029 [correct]* |
+
+Examining the variance in the datagram through the first packet received:
+
+| Description  | Wireshark Results |
+|:-------------|:------------------|
+| Source IP address           | 10.0.0.11 | 
+| Destination IP address | 10.0.0.12 | 
+| Source port number           | 58047 | 
+| Destination port number           | 47844 |
+| UDP message length            | 46 bytes |
+| UDP checksum           | Checksum: 0x1456 [incorrect, should be 0x8cce (maybe caused by “UDP checksum offload”?)]* |
+
+
+Notice that the return UDP datagram uses a different source port compared to the initial request, but this new source port is utilized for all subsequent TFTP transfer communications. Since TFTP operates without a reliable connection-oriented session, only the original source port used to initiate the TFTP session remains consistent throughout the transfer. 
+
+Additionally, observe that there might be an incorrect UDP checksum in the datagram. This issue often stems from UDP checksum offloading at the network interface level. For more information on why this occurs, you can search for "UDP checksum offload." 
+
+### Step 4: Clean up
+`mininet> quit`
+
+`[analyst@secOps ~]$ sudo mn -c`
+
+Reflection:
+
+TCP manages communication differently from UDP because it prioritizes reliability and guaranteed data delivery through additional controls over the communication channel. This ensures that data transfers are orderly and that each packet arrives as expected, with acknowledgment mechanisms in place to confirm successful transmissions. 
+
+In contrast, UDP is characterized by lower overhead and fewer control mechanisms since it does not rely on establishing a connection or ensuring data order. As a result, the upper-layer protocol must implement its own acknowledgment controls to manage communication effectively. 
+
+Both protocols transport data between clients and servers using their respective application layer protocols, each suited for the specific requirements of their use cases. Depending on the needs of a particular application, one may be preferred over the other, as both have distinct strengths and weaknesses that make them suitable for different types of communications. 
+    
+
